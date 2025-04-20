@@ -3,9 +3,12 @@ import pandas as pd
 import joblib
 
 
+model=0
 # print("✅ Model trained and saved as model.pkl")
 joblib.dump(model, 'D:\\JUPYTER PROJECT\\house_price_app\\model.pkl')
 model = joblib.load('model.pkl')
+price_per_sqft = model.coef_[0]
+print(f"Price per sqft: ₹{price_per_sqft:,.2f}")
 
 st.title("🏠 House Price Predictor")
 
