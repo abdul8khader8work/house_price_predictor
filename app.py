@@ -1,16 +1,18 @@
 import streamlit as st
+import pandas as pd
 import joblib
 
-# Load the trained model
-model = joblib.load("model.pkl")
 
-# App title
-st.title("🏠 House Price Predictor (INR)")
+# print("✅ Model trained and saved as model.pkl")
+joblib.dump(model, 'D:\\JUPYTER PROJECT\\house_price_app\\model.pkl')
+model = joblib.load('model.pkl')
 
-# User input
-sqft = st.number_input("Enter the living area (in sqft):", min_value=100)
+st.title("🏠 House Price Predictor")
 
-# Prediction
+sqft = st.number_input("Enter living area (sqft):", min_value=100)
+
 if sqft:
-    predicted_price = model.predict([[sqft]])[0]
-    st.success(f"Estimated House Price: ₹{predicted_price:,.2f}")
+    price = model.predict([[sqft]])[0]
+    st.success(f"Predicted Price: ₹{price:,.2f}")
+    st.success(f"Price per sqft: ₹{price_per_sqft:,.2f}")
+print("model trained and saved as model.pkl")
